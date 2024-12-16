@@ -1,0 +1,18 @@
+# Core dependencies
+pathlib>=1.0.1
+typing>=3.7.4.3
+
+# File analysis
+python-magic>=0.4.27
+python-magic-bin==0.4.14
+
+# Package management
+pip>=21.0.0
+setuptools>=50.0.0
+
+os
+shutil
+hashlib
+collections
+subprocess
+sys
