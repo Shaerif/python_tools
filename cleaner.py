@@ -1,4 +1,4 @@
-import install_requirements
+import docs.install_requirements as install_requirements
 install_requirements.install_requirements()
 
 import os

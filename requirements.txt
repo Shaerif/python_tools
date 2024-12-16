@@ -1,18 +1,17 @@
 # Core dependencies
-pathlib>=1.0.1
-typing>=3.7.4.3
-
-# File analysis
-python-magic>=0.4.27
-python-magic-bin==0.4.14
+setuptools>=65.5.1
+pip>=21.0.0
 
 # Package management
-pip>=21.0.0
-setuptools>=50.0.0
+click>=8.0.0
+requests>=2.28.0
 
-os
-shutil
-hashlib
-collections
-subprocess
-sys
+# File analysis - Platform specific
+python-magic>=0.4.27; platform_system != "Windows"  # Unix/Linux/MacOS
+python-magic-bin>=0.4.14; platform_system == "Windows"  # Windows
+
+# Path handling
+pathlib>=1.0.1; python_version < "3.4"
+
+# Platform specific dependencies
+pywin32>=223; platform_system == "Windows"

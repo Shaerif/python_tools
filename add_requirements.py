@@ -1,10 +1,36 @@
+"""
+Requirements Management Tool
+
+This module provides functionality to:
+1. Add new requirements to requirements.txt
+2. Modify Python files to include requirement checks
+3. Process entire directories of Python files
+
+Functions:
+    add_requirement(package_name, version=None): Adds a new package requirement
+    modify_python_file(file_path): Updates Python files with requirement checks
+    process_directory(directory): Processes all Python files in a directory
+"""
+
 # Purpose: Add requirement installation code to all Python files in the directory
 
-# Import required modules
+# Fix import path
 import install_requirements
 install_requirements.install_requirements()
 
 import os
+import pkg_resources
+import subprocess
+import sys
+
+def add_requirement(package_name, version=None):
+    try:
+        pkg_resources.require(package_name)
+    except (pkg_resources.DistributionNotFound, pkg_resources.VersionConflict):
+        package_spec = f"{package_name}=={version}" if version else package_name
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', package_spec])
+        with open('requirements.txt', 'a') as f:
+            f.write(f"{package_spec}\n")
 
 def modify_python_file(file_path):
     """
@@ -50,9 +76,11 @@ def process_directory(directory):
                 modify_python_file(file_path)
 
 if __name__ == '__main__':
-
-    # Get the script's directory location
-    directory = os.path.dirname(os.path.abspath(__file__))
-    # Process all Python files in the directory
-    process_directory(directory)
-    print("Completed processing all Python files.")
+    if len(sys.argv) > 1:
+        add_requirement(sys.argv[1])
+    else:
+        # Get the script's directory location
+        directory = os.path.dirname(os.path.abspath(__file__))
+        # Process all Python files in the directory
+        process_directory(directory)
+        print("Completed processing all Python files.")

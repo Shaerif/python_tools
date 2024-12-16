@@ -5,7 +5,7 @@ from pathlib import Path
 from collections import defaultdict
 import subprocess
 import sys
-import install_requirements
+import docs.install_requirements as install_requirements
 
 def calculate_file_hash(filepath):
     """
