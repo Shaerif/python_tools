@@ -1,48 +1,56 @@
 # 🐍 Python Tools Documentation
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-active-success.svg)
-[![Made with Python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active-success.svg)](https://github.com/Shaerif/python_tools)
+[![Made with Python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20MacOS-lightgrey.svg)](#)
+[![Contributions welcome](https://img.shields.io/badge/Contributions-Welcome-orange.svg)](CONTRIBUTING.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Shaerif/python_tools/pulls)
+[![GitHub issues](https://img.shields.io/github/issues/Shaerif/python_tools.svg)](https://github.com/Shaerif/python_tools/issues)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](#)
+[![Activity](https://img.shields.io/github/last-commit/Shaerif/python_tools)](https://github.com/Shaerif/python_tools/commits)
 
 This directory contains documentation for various tools used in the Project Bot.
 
 ## 🛠️ Available Tools
 
-- [🔍 Code Scanner](docs/code_scanner.md) - Scans and analyzes code repositories for quality and security issues
-- [⚡ Data Processor](docs/data_processor.md) - Processes and transforms data with support for multiple formats
-- [🚀 Deployment Helper](docs/deployment_helper.md) - Assists with deployment automation and configuration
-- [⚙️ VS Code Manager](docs/vscode_manager.md) - Manages VS Code settings and extensions
-- [📁 File Organizer](docs/file_organizer.md) - Handles file organization and duplicate detection
-- [📚 Doc Generator](docs/doc_generator.md) - Automates documentation generation and maintenance
-- [📦 Package Manager](docs/package_manager.md) - Manages Python package dependencies
-- [✨ Code Formatter](docs/code_formatter.md) - Enforces consistent code style and formatting
-- [🧪 Test Runner](docs/test_runner.md) - Automated test execution and reporting
+- [🔍 **Code Scanner**](docs/code_scanner.md) - Scans and analyzes code repositories for quality and security issues
+- [⚡ **Data Processor**](docs/data_processor.md) - Processes and transforms data with support for multiple formats
+- [🚀 **Deployment Helper**](docs/deployment_helper.md) - Assists with deployment automation and configuration
+- [🛠️ **VS Code Manager**](docs/vscode_manager.md) - Manages VS Code settings and extensions
+- [📁 **File Organizer**](docs/file_organizer.md) - Handles file organization and duplicate detection
+- [📚 **Doc Generator**](docs/doc_generator.md) - Automates documentation generation and maintenance
+- [📦 **Package Manager**](docs/package_manager.md) - Manages Python package dependencies
+- [✨ **Code Formatter**](docs/code_formatter.md) - Enforces consistent code style and formatting
+- [🧪 **Test Runner**](docs/test_runner.md) - Automated test execution and reporting
 
-Each tool can be accessed individually or through the central menu system (menu.py).
+Each tool can be accessed individually or through the central menu system (`menu.py`).
 See individual documentation pages for detailed usage instructions and configuration options.
 
-# Python Development Tools
-
-A collection of utility tools for Python development and system maintenance.
-
-## Features
+## 🎯 Key Features
 
 ### 🔧 VS Code Settings Manager
-- Backup and restore VS Code settings
-- Support for both stable and insider versions
+
+- 🔒 Backup and restore VS Code settings
+- 💻 Support for both stable and insider versions
 
 ### 📂 File Management
-- Duplicate file detection and removal
-- Documentation file organization
-- Project cleanup utilities
+
+- 🗑️ Duplicate file detection and removal
+- 📄 Documentation file organization
+- 🧹 Project cleanup utilities
 
 ### 🛠️ Development Tools
-- Codebase analysis and checking
-- Requirements management
-- Documentation helpers
 
-## Installation
+- 🩺 Codebase analysis and checking
+- 📋 Requirements management
+- 🖊️ Documentation helpers
+
+## ⚡ Quick Start Guide
+
+## 🚀 Installation
 
 ```bash
 git clone https://github.com/Shaerif/python_tools.git
@@ -50,7 +58,19 @@ cd python_tools
 pip install -r requirements.txt
 ```
 
-## Usage
+## 🔧 Installation Requirements
+
+### 🛠️ System Requirements
+![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=flat&logo=visual-studio-code&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
+![Python](https://img.shields.io/badge/Python_3.8+-3776AB?style=flat&logo=python&logoColor=white)
+
+### 📦 Dependencies
+![Click](https://img.shields.io/badge/Click-Package-green)
+![Requests](https://img.shields.io/badge/Requests-Package-blue)
+![SetupTools](https://img.shields.io/badge/SetupTools-Package-orange)
+
+## 🛠️ Usage
 
 Each tool can be run independently:
 
@@ -61,129 +81,39 @@ python cleaner.py               # Clean project directories
 python doc_checker.py           # Analyze documentation files
 ```
 
-## Documentation
+## 📚 Documentation
 All documentation can be found in the [`docs/`](docs/) directory.
 
-## Contributing
+## 📊 Project Stats
+
+[![Repo Size](https://img.shields.io/github/repo-size/Shaerif/python_tools)](https://github.com/Shaerif/python_tools)
+[![Lines of Code](https://img.shields.io/tokei/lines/github/Shaerif/python_tools)](https://github.com/Shaerif/python_tools)
+[![Downloads](https://img.shields.io/github/downloads/Shaerif/python_tools/total)](https://github.com/Shaerif/python_tools/releases)
+
+## 🤝 Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## Roadmap
+## 🗺️ Roadmap
 
 See [ROADMAP.md](ROADMAP.md) for future development plans.
 
-## Changelog
+## 📝 Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for version history.
 
-## License
+## 📄 License
 
-MIT License - See LICENSE file for details
-
-# Python Tools
-
-A comprehensive collection of Python development and maintenance utilities.
-
-## Technologies & Requirements
-
-### 🔧 Core Technologies
-- 🐍 Python 3.8+
-- 📦 pip (latest version)
-
-### 📚 Key Dependencies
-- 🔨 setuptools >= 65.5.1
-- 🖱️ click >= 8.0.0
-- 🌐 requests >= 2.28.0
-- 📁 pathlib (for Python < 3.4)
-- ✨ python-magic (platform-specific)
-
-### 🔧 Development Tools
-- 💻 Visual Studio Code (recommended)
-- 🔄 Git for version control
-- 🐍 Python virtual environment
-
-## Features
-
-### Package Management
-- Automatic dependency installation
-- Cross-platform compatibility
-- Requirements verification
-
-### Development Tools
-- Code analysis and linting
-- Documentation helpers
-- Project cleanup utilities
-
-## Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/Shaerif/python_tools.git
-
-# Navigate to project directory
-cd python_tools
-
-# Install requirements
-python install_requirements.py
-
-# Run the tools menu
-python menu.py
-```
-
-## Using the Tools Menu
-
-The `menu.py` script provides a centralized interface to access all available tools:
-
-```bash
-python menu.py [--help]
-```
-
-### Menu Options
-
-1. ⚙️ VS Code Settings Manager
-   - Backup settings
-   - Restore settings
-   - Compare configurations
-
-2. 📂 File Management
-   - Scan for duplicates
-   - Clean project directories
-   - Organize documentation
-
-3. Development Tools
-   - Code analysis
-   - Documentation check
-   - Requirements update
-
-4. System Maintenance
-   - Cache cleanup
-   - Temporary file removal
-   - Log rotation
-
-### Command Line Arguments
-
-```bash
-python menu.py --tool <tool_name>    # Run a specific tool directly
-python menu.py --list                # List all available tools
-python menu.py --config <file>       # Use custom configuration
-```
-
-## Documentation
-
-Detailed documentation is available in the [`docs/`](docs/) directory:
-
-- 📥 [Installation Guide](docs/installation.md)
-- 📖 [Usage Guide](docs/usage.md)
-- 👥 [Contributing Guidelines](docs/CONTRIBUTING.md)
-- 📝 [Change Log](docs/CHANGELOG.md)
-- 🗺️ [Roadmap](docs/ROADMAP.md)
-
-## License
-
-MIT License - See [LICENSE](docs/LICENSE) file for details
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## 🤝 Community
 
-[![GitHub Stars](https://img.shields.io/github/stars/Shaerif/python_tools.svg)](https://github.com/Shaerif/python_tools/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/Shaerif/python_tools.svg)](https://github.com/Shaerif/python_tools/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Shaerif/python_tools.svg)](https://github.com/Shaerif/python_tools/pulls)
+[![GitHub Contributors](https://img.shields.io/github/contributors/Shaerif/python_tools.svg)](https://github.com/Shaerif/python_tools/graphs/contributors)
+[![GitHub Forks](https://img.shields.io/github/forks/Shaerif/python_tools.svg?style=social)](https://github.com/Shaerif/python_tools/network/members)
+[![GitHub Stars](https://img.shields.io/github/stars/Shaerif/python_tools.svg?style=social)](https://github.com/Shaerif/python_tools/stargazers)
+[![GitHub Watchers](https://img.shields.io/github/watchers/Shaerif/python_tools.svg?style=social)](https://github.com/Shaerif/python_tools/watchers)
+
+## 🔗 Quick Links
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-255E63?style=for-the-badge&logo=About.me&logoColor=white)](https://github.com/Shaerif)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/Shaerif)
