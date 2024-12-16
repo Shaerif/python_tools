@@ -1,4 +1,4 @@
-# Import required libraries
+# Import required libraries for file operations and hashing
 import os
 import hashlib
 from pathlib import Path
@@ -7,23 +7,11 @@ import subprocess
 import sys
 import install_requirements
 
-def check_requirements():
-    """Check and install required packages."""
-    required_packages = ['os', 'shutil', 'hashlib', 'pathlib', 'collections', 'subprocess', 'sys']
-    for package in required_packages:
-        try:
-            __import__(package)
-        except ImportError:
-            # Install missing package
-            subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
-
 def calculate_file_hash(filepath):
-    """Calculate SHA256 hash of a file.
-    
-    Args:
-        filepath: Path to the file to be hashed
-    Returns:
-        str: Hexadecimal string of the file's SHA256 hash
+    """
+    Generate SHA256 hash of file contents
+    - Reads file in chunks to handle large files efficiently
+    - Returns hexadecimal hash string
     """
     hasher = hashlib.sha256()
     # Read file in chunks to handle large files efficiently
@@ -33,12 +21,11 @@ def calculate_file_hash(filepath):
     return hasher.hexdigest()
 
 def find_duplicates(directory):
-    """Find duplicate files in the given directory.
-    
-    Args:
-        directory: Root directory to search for duplicates
-    Returns:
-        dict: Dictionary with hash values as keys and lists of duplicate file paths as values
+    """
+    Scan directory tree for duplicate files
+    - Uses SHA256 hashing to identify identical files
+    - Creates hash map of file paths grouped by hash
+    - Returns only groups containing duplicates
     """
     # Use defaultdict to automatically create lists for new hash values
     hash_map = defaultdict(list)
@@ -55,11 +42,11 @@ def find_duplicates(directory):
     return {k: v for k, v in hash_map.items() if len(v) > 1}
 
 def remove_duplicates(duplicates, keep_first=True):
-    """Remove duplicate files from the system.
-    
-    Args:
-        duplicates: Dictionary of duplicate files (hash -> list of file paths)
-        keep_first: Boolean flag to keep the first occurrence of duplicate files
+    """
+    Remove identified duplicate files
+    - Shows list of duplicate files with same hash
+    - Optionally keeps first occurrence of each file
+    - Removes duplicate files from filesystem
     """
     for hash_value, file_list in duplicates.items():
         # Display all files with the same hash
@@ -78,17 +65,18 @@ def remove_duplicates(duplicates, keep_first=True):
                 print(f"Removing: {filepath}")
                 os.remove(filepath)
 
-# Main execution block
+# Main execution block with user interaction
 if __name__ == "__main__":
-    # Check and install requirements
-    check_requirements()
+    # Initialize requirements
     install_requirements.install_requirements()
-    # Start search from current directory
+    
+    # Set starting directory for duplicate search
     directory = "."  
     
-    # Find all duplicate files
+    # Execute duplicate detection
     duplicates = find_duplicates(directory)
     
+    # Handle results and user interaction for file removal
     if not duplicates:
         print("No duplicate files found.")
     else:

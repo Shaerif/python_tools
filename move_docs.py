@@ -1,8 +1,3 @@
-# Ensure to install the required packages
-import install_requirements
-# Ensure all required packages are installed
-install_requirements.install_requirements()
-
 import os
 import shutil
 import subprocess
@@ -18,18 +13,6 @@ def read_requirements() -> List[str]:
     except FileNotFoundError:
         # Return default packages if requirements.txt not found
         return ['os', 'shutil', 'pathlib', 'typing']
-
-def check_requirements():
-    """Check and install required packages from requirements.txt."""
-    required_packages = read_requirements()
-    for package in required_packages:
-        try:
-            __import__(package)
-            print(f"✓ {package} is already installed")
-        except ImportError:
-            # Install missing package
-            print(f"Installing {package}...")
-            subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
 
 def ensure_docs_folder_exists():
     """Ensure that the 'docs' folder exists, create if it doesn't."""
@@ -99,7 +82,6 @@ def main():
     print("Documentation File Mover")
     print("======================")
     try:
-        check_requirements()
         ensure_docs_folder_exists()
         move_documentation_files()
     except KeyboardInterrupt:

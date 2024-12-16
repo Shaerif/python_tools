@@ -4,49 +4,31 @@ This directory contains documentation for various tools used in the Project Bot.
 
 ## Available Tools
 
-- [Code Scanner](code_scanner.md) - Scans and analyzes code repositories
-- [Data Processor](data_processor.md) - Processes and transforms data
-- [Deployment Helper](deployment_helper.md) - Assists with deployment automation
+- [Code Scanner](docs/code_scanner.md) - Scans and analyzes code repositories
+- [Data Processor](docs/data_processor.md) - Processes and transforms data
+- [Deployment Helper](docs/deployment_helper.md) - Assists with deployment automation
 
 Each tool has its own dedicated documentation page with detailed information about usage, configuration, and examples.
 
-# Python Tools
+# Python Development Tools
 
-Collection of utility scripts for project maintenance.
+A collection of utility tools for Python development and system maintenance.
 
-## Tools Available
+## Features
 
-### move_docs.py
+### VS Code Settings Manager
+- Backup and restore VS Code settings
+- Support for both stable and insider versions
 
-Automated documentation file organizer that helps maintain project documentation structure.
+### File Management
+- Duplicate file detection and removal
+- Documentation file organization
+- Project cleanup utilities
 
-#### Features
-- Automatically moves documentation files to a `docs` folder
-- Interactive file movement confirmation
-- Prevents README.md from being moved
-- Handles file naming conflicts
-- Supports multiple document formats (.md, .rst, .txt, .doc, .docx, .pdf)
-
-#### Usage
-```bash
-python move_docs.py
-```
-
-#### Requirements
-- Python 3.6+
-- Dependencies listed in requirements.txt
-
-# Project Cleaner Tool
-
-A Python-based utility for cleaning up project directories before release by removing unnecessary files and folders.
-
-## Overview
-
-This tool helps developers prepare their projects for release by automatically removing unwanted files and directories such as:
-- Temporary files
-- Development artifacts
-- Local configuration files
-- Cache directories
+### Development Tools
+- Codebase analysis and checking
+- Requirements management
+- Documentation helpers
 
 ## Installation
 
@@ -58,50 +40,30 @@ pip install -r requirements.txt
 
 ## Usage
 
-1. Basic usage:
+Each tool can be run independently:
+
 ```bash
-python cleaner.py /path/to/your/project
+python vscode_backup_restore.py  # Backup/restore VS Code settings
+python remove_duplicates.py      # Find and remove duplicate files
+python cleaner.py               # Clean project directories
+python doc_checker.py           # Analyze documentation files
 ```
 
-2. With custom configuration:
-```bash
-python cleaner.py /path/to/your/project --config custom_config.yaml
-```
-
-## Configuration
-
-Create a `config.yaml` file to customize which files and directories to clean:
-
-```yaml
-exclude_patterns:
-  - "*.pyc"
-  - "__pycache__"
-  - ".env"
-  - "node_modules"
-  - ".git"
-
-keep_patterns:
-  - "*.md"
-  - "LICENSE"
-  - "*.py"
-```
-
-## Examples
-
-### Clean a Python Project
-```bash
-python cleaner.py /path/to/python/project
-```
-
-### Clean a Node.js Project
-```bash
-python cleaner.py /path/to/node/project --config node_config.yaml
-```
+## Documentation
+All documentation can be found in the [`docs/`](docs/) directory.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## Roadmap
+
+See [ROADMAP.md](ROADMAP.md) for future development plans.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 ## License
 
-[MIT License](LICENSE)
+MIT License - See LICENSE file for details

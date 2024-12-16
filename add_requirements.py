@@ -1,11 +1,10 @@
 # Purpose: Add requirement installation code to all Python files in the directory
 
 # Import required modules
-import os
 import install_requirements
-
-# Install any missing requirements first
 install_requirements.install_requirements()
+
+import os
 
 def modify_python_file(file_path):
     """
@@ -51,6 +50,7 @@ def process_directory(directory):
                 modify_python_file(file_path)
 
 if __name__ == '__main__':
+
     # Get the script's directory location
     directory = os.path.dirname(os.path.abspath(__file__))
     # Process all Python files in the directory

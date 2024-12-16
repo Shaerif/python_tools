@@ -1,20 +1,27 @@
-# Import necessary modules
-import os
-import shutil
+# Import and initialize requirements installer
 import install_requirements
-
-# Install required packages
 install_requirements.install_requirements()
 
+import os
+import shutil
+
 # Define backup directory relative to the script location
+# This ensures consistent backup location regardless of where script is run from
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BACKUP_DIR = os.path.join(SCRIPT_DIR, 'backups')
 
-# Create backup directory if it doesn't exist
+# Initialize backup directory
+# Create if it doesn't exist to ensure backup operations can proceed
 if not os.path.exists(BACKUP_DIR):
     os.makedirs(BACKUP_DIR)
 
 def backup_settings():
+    """
+    Backup both VS Code Stable and Insiders settings
+    - Locates settings.json for both versions
+    - Creates backup copies in the backup directory
+    - Provides feedback about backup status
+    """
     # Function to back up VS Code settings
     print("Backing up settings...")
 
@@ -39,6 +46,12 @@ def backup_settings():
         print("VS Code Insiders settings not found.")
 
 def restore_settings():
+    """
+    Restore VS Code settings from backup
+    - Allows user to choose between Stable and Insiders versions
+    - Copies backup file to appropriate VS Code settings location
+    - Provides feedback about restore status
+    """
     # Function to restore VS Code settings
     print("Choose which version to restore:")
     print("1. VS Code Stable")
@@ -62,6 +75,12 @@ def restore_settings():
         print("Invalid choice.")
 
 def main():
+    """
+    Main program flow
+    - Presents user with backup/restore options
+    - Executes chosen operation
+    - Handles invalid inputs gracefully
+    """
     # Main function to handle user options
     print("Choose an option:")
     print("1. Backup settings")
@@ -79,5 +98,5 @@ def main():
         print("Invalid option.")
 
 if __name__ == "__main__":
-    # Run the main function when the script is executed
+    # Entry point: Start the backup/restore process
     main()

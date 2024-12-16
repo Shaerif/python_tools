@@ -1,13 +1,11 @@
-# Import necessary modules
+import install_requirements
+install_requirements.install_requirements()
+
 import os
 import magic
 from datetime import datetime
 from pathlib import Path
 import argparse
-import install_requirements
-
-# Install required packages
-install_requirements.install_requirements()
 
 def is_document(file_path):
     """Check if file is a document based on mime type."""

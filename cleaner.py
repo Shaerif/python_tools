@@ -1,11 +1,10 @@
+import install_requirements
+install_requirements.install_requirements()
+
 import os
 import shutil
 from pathlib import Path
 from typing import List, Optional
-import install_requirements
-
-# Install required packages
-install_requirements.install_requirements()
 
 class ProjectCleaner:
     def __init__(self, project_root: str = None):

@@ -4,8 +4,6 @@ install_requirements.install_requirements()
 import os
 import sys
 from pathlib import Path
-
-# Now import the rest of the modules
 import magic
 from typing import List, Dict
 
