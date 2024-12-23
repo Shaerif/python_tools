@@ -1,24 +1,31 @@
-# Contributing Guidelines
+# 🤝 Contributing Guidelines
 
-## Development Setup
+> 📝 **Recent Updates**
+> - Added menu-based development workflow
+> - Updated project structure guidelines
+> - Enhanced testing requirements
 
-1. Fork the repository
-2. Create a virtual environment
-3. Install development requirements
+## 🚀 Development Setup
+1. Fork and clone
+2. Create virtual environment
+3. Run `python src/menu.py`
+4. Select "Core Tools > Requirements Manager"
 
-## Coding Standards
-
-- Follow PEP 8 guidelines
-- Include docstrings
-- Add type hints
-- Write unit tests
-
-## Pull Request Process
-
+## 📋 Development Process
 1. Create feature branch
-2. Update documentation
-3. Add tests
-4. Submit PR
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+2. Make changes
+3. Run tests
+4. Update docs
+5. Submit PR
+
+## 📋 Coding Standards
+- ✨ Follow PEP 8
+- 📚 Include docstrings
+- ⌨️ Add type hints
+- 🧪 Write unit tests
 
 ## Development Flow
 
@@ -32,4 +39,14 @@ git checkout -b feature/your-feature
 
 # Submit PR
 git push origin feature/your-feature
+```
+
+## 🛠️ Setup with setup.py
+```bash
+# Clone repository
+git clone https://github.com/shaerif/python_tools.git
+cd python_tools
+
+# Install using setup.py
+python setup.py install
 ```

@@ -1,13 +1,15 @@
-# Code Scanner Tool
+# 🔍 Code Scanner Tool
 
-A Python-based tool for scanning and analyzing code repositories.
+> 📝 **Recent Updates**
+> - Added security scanning features
+> - Updated configuration options
+> - Enhanced reporting features
 
-## Features
-
-- Repository analysis
-- Code quality checks
-- Dependency scanning
-- Security vulnerability detection
+## ⚡ Features
+- 📊 Repository analysis
+- 🔒 Security checks
+- 📝 Code quality validation
+- 🔍 Dependency scanning
 
 ## Installation
 
@@ -21,7 +23,13 @@ pip install -r requirements.txt
 python code_scanner.py --repo-path /path/to/repo --output report.json
 ```
 
-## Configuration
+## 🛠️ Configuration
+```yaml
+scan_types:
+  - security
+  - quality
+  - dependencies
+```
 
 The tool can be configured using a `config.yaml` file:
 

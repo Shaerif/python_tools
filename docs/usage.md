@@ -1,25 +1,26 @@
-# Usage Guide
+# 📘 Usage Guide
 
-## Menu Interface
+> 📝 **Recent Updates**
+> - Added tool descriptions
+> - Updated command examples
+> - Improved formatting
 
-Launch the menu interface:
+## 🎮 Menu Interface
+Launch the menu:
 ```bash
-python menu.py
+python src/menu.py
 ```
 
-## Available Tools
+## 🛠️ Available Tools
+1. **Requirements Manager** 📦
+   ```bash
+   python src/core/add_requirements.py
+   ```
 
-1. Add Requirements
-   - Add new package requirements
-   - Update existing requirements
-
-2. Install Requirements
-   - Install all project dependencies
-   - Platform-specific installations
-
-3. Process Directory
-   - Scan Python files
-   - Update requirement imports
+2. **VS Code Settings** ⚙️
+   ```bash
+   python src/tools/vscode_backup_restore.py
+   ```
 
 ## Command Line Usage
 

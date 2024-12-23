@@ -1,40 +1,48 @@
-# Installation Guide
+# 💻 Installation Guide
 
-## System Requirements
+> 📝 **Recent Updates**
+> - Added menu-based installation
+> - Updated dependency management
+> - Enhanced platform support
 
-- Python 3.8 or higher
-- pip (package installer)
-- Git (for version control)
+## 🔧 System Requirements
+- Python 3.8+ 🐍
+- pip (package installer) 📦
+- Git (version control) 🌿
 
-## Platform-Specific Requirements
-
-### Windows
+## 📥 Quick Install
 ```bash
-python -m pip install --upgrade pip setuptools
-python -m pip install python-magic-bin
-```
-
-### Linux/MacOS
-```bash
-pip3 install --upgrade pip setuptools
-pip3 install python-magic
-```
-
-## Installation Steps
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/python_tools.git
-```
-
-2. Navigate to project directory:
-```bash
+# Clone and install
+git clone https://github.com/shaerif/python_tools.git
 cd python_tools
+python src/menu.py
+
+# Select "Core Tools > Requirements Manager" to install dependencies
 ```
 
-3. Install requirements:
+## 🚀 Quick Start
 ```bash
-python install_requirements.py
+# Clone repository
+git clone https://github.com/shaerif/python_tools.git
+cd python_tools
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Linux/MacOS
+venv\Scripts\activate     # Windows
+
+# Install dependencies
+python -m pip install -r requirements.txt
+```
+
+## 🛠️ Setup with setup.py
+```bash
+# Clone repository
+git clone https://github.com/shaerif/python_tools.git
+cd python_tools
+
+# Install using setup.py
+python setup.py install
 ```
 
 ## Verification

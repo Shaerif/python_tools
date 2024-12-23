@@ -23,7 +23,13 @@ def install_bootstrap_packages():
         sys.exit(1)
 
 def install_requirements():
-    requirements_path = os.path.join(os.path.dirname(__file__), 'requirements.txt')
+    # Update path to point to root requirements.txt
+    requirements_path = os.path.abspath(os.path.join(
+        os.path.dirname(__file__), 
+        '..',
+        'requirements.txt'
+    ))
+    
     if not os.path.exists(requirements_path):
         print("requirements.txt not found!")
         return False

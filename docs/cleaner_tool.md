@@ -1,21 +1,19 @@
-# Project Cleaner Tool Documentation
+# 🧹 Project Cleaner Tool
 
-A utility tool for cleaning various temporary files and directories in your project.
+> 📝 **Recent Updates**
+> - Added new cleaning features
+> - Updated usage examples
+> - Improved configuration options
 
-## Features
+## ⚡ Features
+- 🗑️ Clear log files
+- 🧹 Clear cache directories
+- 🔄 Clear user data
+- 🧮 Clear tool-specific data
 
-- Clear log files
-- Clear cache directories
-- Clear user data
-- Clear tool-specific temporary data
-- Full cleanup operation
-
-## Usage
-
-### Basic Usage
-
+## 💻 Usage Examples
 ```python
-from python_tools.cleaner import ProjectCleaner
+from src.utils.cleaner import ProjectCleaner
 
 # Initialize cleaner
 cleaner = ProjectCleaner()

@@ -1,13 +1,15 @@
-# Data Processor Tool
+# 🔄 Data Processor Tool
 
-A tool for processing and transforming data in various formats.
+> 📝 **Recent Updates**
+> - Added streaming data support
+> - Enhanced validation rules
+> - Improved error handling
 
-## Features
-
-- CSV/JSON/XML processing
-- Data validation
-- Format conversion
-- Data enrichment
+## 🎯 Features
+- 📊 Multi-format processing (CSV/JSON/XML)
+- ✅ Advanced validation rules
+- 🔄 Streaming transformations
+- 💾 Efficient memory handling
 
 ## Installation
 
@@ -34,9 +36,14 @@ validation_rules:
     pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
 ```
 
-## Processing Pipeline
+## ⚙️ Processing Pipeline
+1. 📥 Data Loading
+2. ✨ Validation
+3. 🔄 Transformation
+4. 📤 Output Generation
 
-1. Data Loading
-2. Validation
-3. Transformation
-4. Output Generation
+## 📈 Performance Tips
+- Use streaming for large files
+- Enable batch processing
+- Configure memory limits
+- Implement data chunking

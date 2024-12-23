@@ -1,21 +1,33 @@
-# Changelog
+# 📋 Changelog
 
-All notable changes to this project will be documented in this file.
+> 📝 **Recent Updates**
 
-## [1.0.0] - 2024-12-16
+## [1.1.0]
+### ✨ Added
+- 🎯 Menu-based tool access system
+- 🔌 Unified tool interface
+- 📁 Improved project structure
 
-### Added
-- Initial release with core functionality
-- VS Code settings backup and restore tool
-- Duplicate file finder and remover
-- Documentation file management tools
-- Project cleaning utilities
-- Codebase checking tools
-- Requirements installation handler
+### 🔄 Changed
+- 🏗️ Reorganized directory structure
+- 🔧 Updated tool organization
+- 📚 Enhanced documentation
+- 🛠️ Added setup.py for installation
 
-### Changed
-- Improved error handling across all modules
-- Enhanced user feedback and prompts
+## [1.0.0]
+
+### ✨ Added
+- 🎯 Initial release with core functionality
+- 💾 VS Code settings backup/restore
+- 🔍 Duplicate file finder
+- 📚 Documentation management
+
+### 🔄 Changed
+- 🏗️ Improved project structure
+- 🐛 Enhanced error handling
+- ⚡ Optimized performance
 
 ### Fixed
 - Initial bug fixes and code optimization
+- Resolved pkg_resources dependency issues
+- Fixed package installation error handling

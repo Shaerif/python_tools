@@ -1,4 +1,23 @@
-# 🐍 Python Tools Documentation
+﻿# 🛠️ Python Tools Suite
+
+> 📝 **Recent Updates**
+> - Reorganized project structure for better maintainability
+> - Added menu-based tool access system
+> - Updated installation process
+> - Enhanced documentation organization
+
+## 📦 Project Structure
+```
+python_tools/
+├── src/
+│   ├── core/      # 🎯 Core functionality (requirements, settings)
+│   ├── tools/     # 🔧 Main tools (VS Code, duplicates, docs)
+│   ├── utils/     # ⚙️ Utilities (logger, cleaner)
+│   └── config/    # ⚡ Configuration management
+├── docs/          # 📚 Documentation
+├── tests/         # 🧪 Test suite
+└── scripts/       # 📜 Automation scripts
+```
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -48,14 +67,12 @@ See individual documentation pages for detailed usage instructions and configura
 - 📋 Requirements management
 - 🖊️ Documentation helpers
 
-## ⚡ Quick Start Guide
-
-## 🚀 Installation
+## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/Shaerif/python_tools.git
+git clone https://github.com/shaerif/python_tools.git
 cd python_tools
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ## 🔧 Installation Requirements
@@ -117,3 +134,24 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-255E63?style=for-the-badge&logo=About.me&logoColor=white)](https://github.com/Shaerif)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/Shaerif)
+
+
+## 📊 Project Statistics
+
+<div align="center">
+
+### 🕒 Development Metrics
+| Metric | Value |
+|:------:|:-----:|
+| Time Invested | 12 hours and 27 minutes |
+| Last Updated | 2024-12-23 03:28:00 EST |
+| Release Status | Stable |
+| Active Contributors | 1 |
+
+</div>
+
+> **Note**: Time tracking started from project inception. Updates are automated via GitHub Actions.
+
+## 🙏 Credits & Thanks
+For a detailed list of contributors and tools used, please see our [Credits & Thanks](CREDITS.md) page.
+````
