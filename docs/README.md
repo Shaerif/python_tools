@@ -19,15 +19,15 @@ Key tools include the Code Scanner for identifying code issues, the Data Process
 
 ## 🛠️ Available Tools
 
-- [🔍 **Code Scanner**](docs/code_scanner.md) - Scans and analyzes code repositories for quality and security issues
-- [⚡ **Data Processor**](docs/data_processor.md) - Processes and transforms data with support for multiple formats
-- [🚀 **Deployment Helper**](docs/deployment_helper.md) - Assists with deployment automation and configuration
-- [🛠️ **VS Code Manager**](docs/vscode_manager.md) - Manages VS Code settings and extensions
-- [📁 **File Organizer**](docs/file_organizer.md) - Handles file organization and duplicate detection
-- [📚 **Doc Generator**](docs/doc_generator.md) - Automates documentation generation and maintenance
-- [📦 **Package Manager**](docs/package_manager.md) - Manages Python package dependencies
-- [✨ **Code Formatter**](docs/code_formatter.md) - Enforces consistent code style and formatting
-- [🧪 **Test Runner**](docs/test_runner.md) - Automated test execution and reporting
+- [🔍 **Code Scanner**](code_scanner.md) - Scans and analyzes code repositories for quality and security issues
+- [⚡ **Data Processor**](data_processor.md) - Processes and transforms data with support for multiple formats
+- [🚀 **Deployment Helper**](deployment_helper.md) - Assists with deployment automation and configuration
+- [🛠️ **VS Code Manager**](vscode_settings.md) - Manages VS Code settings and extensions
+- [📁 **File Organizer**](file_organizer.md) - Handles file organization and duplicate detection
+- [📚 **Doc Generator**](doc_generator.md) - Automates documentation generation and maintenance
+- [📦 **Package Manager**](package_manager.md) - Manages Python package dependencies
+- [✨ **Code Formatter**](code_formatter.md) - Enforces consistent code style and formatting
+- [🧪 **Test Runner**](test_runner.md) - Automated test execution and reporting
 
 Each tool can be accessed individually or through the central menu system (`menu.py`).
 See individual documentation pages for detailed usage instructions and configuration options.
