@@ -1,23 +1,4 @@
-﻿# 🛠️ Python Tools Suite
-
-> 📝 **Recent Updates**
-> - Reorganized project structure for better maintainability
-> - Added menu-based tool access system
-> - Updated installation process
-> - Enhanced documentation organization
-
-## 📦 Project Structure
-```
-python_tools/
-├── src/
-│   ├── core/      # 🎯 Core functionality (requirements, settings)
-│   ├── tools/     # 🔧 Main tools (VS Code, duplicates, docs)
-│   ├── utils/     # ⚙️ Utilities (logger, cleaner)
-│   └── config/    # ⚡ Configuration management
-├── docs/          # 📚 Documentation
-├── tests/         # 🧪 Test suite
-└── scripts/       # 📜 Automation scripts
-```
+﻿# 🐍 Python Tools Documentation
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -31,7 +12,10 @@ python_tools/
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](#)
 [![Activity](https://img.shields.io/github/last-commit/Shaerif/python_tools)](https://github.com/Shaerif/python_tools/commits)
 
-This directory contains documentation for various tools used in the Project Bot.
+Python tools for improving code quality, handling data, managing deployments, and automating workflows. Includes tools like Code Scanner, Data Processor, VS Code Manager, and more, designed to streamline development processes and enhance productivity.
+
+Designed to enhance development efficiency by addressing code quality, data processing, deployment automation, and workflow management. 
+Key tools include the Code Scanner for identifying code issues, the Data Processor for transforming and managing data, the VS Code Manager for handling settings and extensions, and many others. These tools aim to simplify common development tasks, improve project organization, and ensure consistency across workflows.
 
 ## 🛠️ Available Tools
 
