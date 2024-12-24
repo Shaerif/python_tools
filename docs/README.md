@@ -1,5 +1,11 @@
 ﻿# 🐍 Python Tools Documentation
 
+> 📝 **Recent Updates - December 2024**
+> - 🔄 Added cross-platform Python updater (supports Windows, Linux, MacOS)
+> - 🛡️ Enhanced security with input validation and safe file operations
+> - 📚 Restructured documentation with improved readability
+> - ⚡ Optimized tool performance and error handling
+
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Active-success.svg)](https://github.com/Shaerif/python_tools)
@@ -17,8 +23,36 @@ Python tools for improving code quality, handling data, managing deployments, an
 Designed to enhance development efficiency by addressing code quality, data processing, deployment automation, and workflow management. 
 Key tools include the Code Scanner for identifying code issues, the Data Processor for transforming and managing data, the VS Code Manager for handling settings and extensions, and many others. These tools aim to simplify common development tasks, improve project organization, and ensure consistency across workflows.
 
+## 🎯 Key Features
+- 🔄 **Automatic Python Updates**: Cross-platform Python version management
+- 🛡️ **Enhanced Security**: Input validation and safe file operations
+- 📚 **Smart Documentation**: Automated doc generation and management
+- ⚙️ **VS Code Integration**: Settings backup and sync
+- 🧹 **Project Cleanup**: Intelligent file organization
+
 ## 🛠️ Available Tools
 
+### Core Tools
+- 🔄 [**Python Updater**](tools/update_python.md) - Latest Python version management
+- 🔒 [**Security Scanner**](tools/security_scanner.md) - Code security analysis
+- 📚 [**Doc Manager**](tools/doc_manager.md) - Documentation automation
+
+### Utility Tools
+- 🧹 [**Project Cleaner**](utils/cleaner.md) - Cleanup and organization
+- 📊 [**Code Analyzer**](tools/code_analyzer.md) - Code quality checks
+
+Each tool can be accessed individually or through the central menu system (`menu.py`).
+See individual documentation pages for detailed usage instructions and configuration options.
+
+## 🎯 What's New
+- **Python Updater**: Automatically update Python across Windows, Linux, and MacOS
+- **Enhanced Backup**: Improved VS Code settings management
+- **Better Security**: Added validation and safety checks
+- **Documentation**: Restructured for better clarity
+
+## 🛠️ Available Tools
+
+- [🔄 **Python Updater**](tools/update_python.md) - Cross-platform Python version management
 - [🔍 **Code Scanner**](code_scanner.md) - Scans and analyzes code repositories for quality and security issues
 - [⚡ **Data Processor**](data_processor.md) - Processes and transforms data with support for multiple formats
 - [🚀 **Deployment Helper**](deployment_helper.md) - Assists with deployment automation and configuration
@@ -126,8 +160,8 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 ### 🕒 Development Metrics
 | Metric | Value |
 |:------:|:-----:|
-| Time Invested | 12 hours and 46 minutes |
-| Last Updated | 2024-12-23 04:05:13 EST |
+| Time Invested | 16 hours and 17 minutes |
+| Last Updated | 2024-12-23 19:22:46 EST |
 | Release Status | Stable |
 | Active Contributors | 1 |
 
@@ -137,3 +171,4 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 ## 🙏 Credits & Thanks
 For a detailed list of contributors and tools used, please see our [Credits & Thanks](CREDITS.md) page.
+````

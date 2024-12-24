@@ -1,17 +1,27 @@
 """
-Main Menu Interface
-Provides a command-line menu for accessing various Python tools
+Python Tools Menu Interface
+--------------------------
+Provides a command-line interface for accessing various Python tools.
+Features:
+- Categorized tool organization
+- Dynamic tool loading
+- Error handling and recovery
+- Safe requirements installation
 """
 
 import os
 import sys
 from pathlib import Path
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Dict, Any
 
 # Add the current directory to Python path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 if current_dir not in sys.path:
     sys.path.append(current_dir)
+
+class ToolError(Exception):
+    """Custom exception for tool-related errors."""
+    pass
 
 def safe_install_requirements():
     """Safely attempt to install requirements with interrupt handling"""
@@ -46,48 +56,89 @@ TOOL_CATEGORIES = {
     },
     "Utility Tools": {
         "Project Cleaner": "utils/cleaner.py",
-        "Move Docs": "tools/move_docs.py"
+        "Move Docs": "tools/move_docs.py",
+        "Update Python": "tools/update_python.py"  # Added new tool
     }
 }
 
-def display_menu(categories: dict) -> str:
-    """Display categorized menu options"""
+def get_tool_description(tool_path: str) -> str:
+    """Get the description of a tool from its docstring.
+    
+    Args:
+        tool_path (str): Path to the tool file
+        
+    Returns:
+        str: Tool description or default message if not found
+    """
+    try:
+        spec = importlib.util.spec_from_file_location("module", tool_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module.__doc__.split('\n')[0] if module.__doc__ else "No description available"
+    except Exception:
+        return "Description unavailable"
+
+def display_menu(categories: dict) -> Tuple[str, Dict[str, Tuple[str, str]]]:
+    """Display categorized menu options with tool descriptions.
+    
+    Args:
+        categories (dict): Dictionary of tool categories and their tools
+        
+    Returns:
+        Tuple[str, Dict[str, Tuple[str, str]]]: Selected option and option mapping
+    """
     print("\n🛠️  Python Tools Menu")
     print("=" * 50)
     
-    option_number = 1
     option_map = {}
+    option_number = 1
     
     for category, tools in categories.items():
         print(f"\n📁 {category}:")
-        for tool_name in tools:
+        for tool_name, tool_path in tools.items():
+            full_path = os.path.join(os.path.dirname(__file__), tool_path)
+            description = get_tool_description(full_path)
             print(f"{option_number}. {tool_name}")
-            option_map[str(option_number)] = (tool_name, tools[tool_name])
+            print(f"   └─ {description}")
+            option_map[str(option_number)] = (tool_name, tool_path)
             option_number += 1
     
     print("\n0. Exit")
     return input("\n👉 Select an option (0-{}): ".format(len(option_map))), option_map
 
 def run_tool(tool_path: str) -> None:
-    """Run the selected Python tool"""
+    """Run the selected Python tool with error handling.
+    
+    Args:
+        tool_path (str): Path to the tool to run
+        
+    Raises:
+        ToolError: If the tool cannot be run
+    """
     try:
         full_path = os.path.join(os.path.dirname(__file__), tool_path)
         if not os.path.exists(full_path):
-            print(f"❌ Tool not found: {tool_path}")
-            return
+            raise ToolError(f"Tool not found: {tool_path}")
 
         print(f"\n🚀 Running {os.path.basename(tool_path)}...")
         
-        # Import and run the tool
         spec = importlib.util.spec_from_file_location("module", full_path)
+        if not spec or not spec.loader:
+            raise ToolError(f"Could not load tool: {tool_path}")
+            
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         
         if hasattr(module, 'main'):
             module.main()
-        print(f"\n✅ Completed running {os.path.basename(tool_path)}")
+            print(f"\n✅ Successfully completed: {os.path.basename(tool_path)}")
+        else:
+            raise ToolError(f"Tool has no main() function: {tool_path}")
+            
     except Exception as e:
-        print(f"❌ Error running {tool_path}: {str(e)}")
+        error_msg = f"❌ Error running {tool_path}: {str(e)}"
+        print(error_msg)
+        raise ToolError(error_msg) from e
 
 def main():
     """Main program loop"""
@@ -101,7 +152,10 @@ def main():
             
             if choice in option_map:
                 tool_name, tool_path = option_map[choice]
-                run_tool(tool_path)
+                try:
+                    run_tool(tool_path)
+                except ToolError:
+                    print("\n❌ Failed to run the tool. Please check the error message above.")
             else:
                 print("\n❌ Invalid option. Please try again.")
             

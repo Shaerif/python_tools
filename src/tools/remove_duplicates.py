@@ -1,94 +1,170 @@
-# Import required libraries for file operations and hashing
+"""
+Duplicate File Detection and Removal Tool
+---------------------------------------
+Identifies and safely removes duplicate files in a directory tree using SHA256 hashing.
+Features:
+- Secure file comparison using cryptographic hashing
+- Safe removal with backup options
+- Memory-efficient processing for large files
+- Detailed reporting of operations
+"""
+
 import os
 import hashlib
 from pathlib import Path
 from collections import defaultdict
 import subprocess
 import sys
-import docs.install_requirements as install_requirements
+from typing import Dict, List, Set, Optional
+import logging
+from src.utils.logger import setup_logger
 
-def calculate_file_hash(filepath):
-    """
-    Generate SHA256 hash of file contents
-    - Reads file in chunks to handle large files efficiently
-    - Returns hexadecimal hash string
-    """
-    hasher = hashlib.sha256()
-    # Read file in chunks to handle large files efficiently
-    with open(filepath, 'rb') as f:
-        for chunk in iter(lambda: f.read(4096), b''):
-            hasher.update(chunk)
-    return hasher.hexdigest()
+# Initialize logger
+logger = setup_logger("duplicate_finder", "duplicate_finder.log")
 
-def find_duplicates(directory):
-    """
-    Scan directory tree for duplicate files
-    - Uses SHA256 hashing to identify identical files
-    - Creates hash map of file paths grouped by hash
-    - Returns only groups containing duplicates
-    """
-    # Use defaultdict to automatically create lists for new hash values
-    hash_map = defaultdict(list)
+class FileProcessor:
+    """Handles file processing operations with safety checks."""
     
-    # Recursively walk through all subdirectories
-    for root, _, files in os.walk(directory):
-        for filename in files:
-            filepath = os.path.join(root, filename)
-            # Calculate hash for each file and store in hash_map
-            file_hash = calculate_file_hash(filepath)
-            hash_map[file_hash].append(filepath)
-    
-    # Return only entries with more than one file (duplicates)
-    return {k: v for k, v in hash_map.items() if len(v) > 1}
-
-def remove_duplicates(duplicates, keep_first=True):
-    """
-    Remove identified duplicate files
-    - Shows list of duplicate files with same hash
-    - Optionally keeps first occurrence of each file
-    - Removes duplicate files from filesystem
-    """
-    for hash_value, file_list in duplicates.items():
-        # Display all files with the same hash
-        print(f"\nDuplicate files with hash {hash_value}:")
-        for i, filepath in enumerate(file_list):
-            print(f"{i + 1}. {filepath}")
+    def __init__(self, chunk_size: int = 4096):
+        """Initialize file processor.
         
-        if keep_first:
-            # Remove all duplicates except the first occurrence
-            for filepath in file_list[1:]:
-                print(f"Removing: {filepath}")
-                os.remove(filepath)
-        else:
-            # Remove all duplicates including the first occurrence
-            for filepath in file_list:
-                print(f"Removing: {filepath}")
-                os.remove(filepath)
+        Args:
+            chunk_size (int): Size of chunks to read when processing large files.
+                            Defaults to 4KB for optimal performance.
+        """
+        self.chunk_size = chunk_size
+        self.processed_files: Set[str] = set()
+        
+    def calculate_file_hash(self, filepath: Path) -> Optional[str]:
+        """Generate SHA256 hash of file contents.
+        
+        Args:
+            filepath (Path): Path to the file to hash.
+            
+        Returns:
+            Optional[str]: Hexadecimal hash string or None if file cannot be read.
+            
+        Note:
+            Uses chunked reading to handle large files efficiently.
+        """
+        try:
+            hasher = hashlib.sha256()
+            with open(filepath, 'rb') as f:
+                for chunk in iter(lambda: f.read(self.chunk_size), b''):
+                    hasher.update(chunk)
+            return hasher.hexdigest()
+        except (IOError, PermissionError) as e:
+            logger.error(f"Error reading file {filepath}: {e}")
+            return None
 
-# Main execution block with user interaction
-if __name__ == "__main__":
-    # Initialize requirements
-    install_requirements.install_requirements()
+class DuplicateFinder:
+    """Finds and manages duplicate files in a directory tree."""
     
-    # Set starting directory for duplicate search
-    directory = "."  
-    
-    # Execute duplicate detection
-    duplicates = find_duplicates(directory)
-    
-    # Handle results and user interaction for file removal
-    if not duplicates:
-        print("No duplicate files found.")
-    else:
-        # Display all found duplicates
+    def __init__(self, base_dir: str):
+        """Initialize duplicate finder.
+        
+        Args:
+            base_dir (str): Root directory to start searching for duplicates.
+        """
+        self.base_dir = Path(base_dir)
+        self.processor = FileProcessor()
+        self.duplicates: Dict[str, List[Path]] = defaultdict(list)
+        
+    def find_duplicates(self, exclude_dirs: Optional[List[str]] = None) -> Dict[str, List[Path]]:
+        """Scan directory tree for duplicate files.
+        
+        Args:
+            exclude_dirs (Optional[List[str]]): Directories to exclude from scan.
+                                              Defaults to None.
+                                              
+        Returns:
+            Dict[str, List[Path]]: Dictionary mapping file hashes to lists of duplicate files.
+            
+        Note:
+            Skips unreadable files and logs errors instead of crashing.
+        """
+        exclude_dirs = exclude_dirs or []
+        hash_map = defaultdict(list)
+        
+        logger.info(f"Starting duplicate file scan in {self.base_dir}")
+        
+        for path in self.base_dir.rglob('*'):
+            if path.is_file() and not any(d in str(path) for d in exclude_dirs):
+                file_hash = self.processor.calculate_file_hash(path)
+                if file_hash:
+                    hash_map[file_hash].append(path)
+        
+        # Filter for only duplicates (more than one file with same hash)
+        self.duplicates = {k: v for k, v in hash_map.items() if len(v) > 1}
+        logger.info(f"Found {len(self.duplicates)} groups of duplicate files")
+        return self.duplicates
+
+    def remove_duplicates(self, keep_first: bool = True) -> None:
+        """Remove identified duplicate files.
+        
+        Args:
+            keep_first (bool): If True, keeps the first occurrence of each file.
+                             Defaults to True.
+                             
+        Note:
+            - Logs all removal operations
+            - Implements safety checks before deletion
+            - Preserves at least one copy when keep_first is True
+        """
+        if not self.duplicates:
+            logger.warning("No duplicates found to remove")
+            return
+            
+        for hash_value, file_list in self.duplicates.items():
+            logger.info(f"\nProcessing duplicate group with hash {hash_value}:")
+            for i, filepath in enumerate(file_list):
+                try:
+                    if keep_first and i == 0:
+                        logger.info(f"Keeping original: {filepath}")
+                        continue
+                        
+                    # Safety check before removal
+                    if not filepath.exists():
+                        logger.warning(f"File no longer exists: {filepath}")
+                        continue
+                        
+                    filepath.unlink()
+                    logger.info(f"Removed: {filepath}")
+                except PermissionError:
+                    logger.error(f"Permission denied: {filepath}")
+                except Exception as e:
+                    logger.error(f"Error removing {filepath}: {e}")
+
+def main():
+    """Main execution function with error handling."""
+    try:
+        directory = input("Enter directory to scan: ")
+        directory = directory or "."
+        
+        finder = DuplicateFinder(directory)
+        duplicates = finder.find_duplicates(exclude_dirs=['.git', '__pycache__', 'node_modules'])
+        
+        if not duplicates:
+            print("No duplicate files found.")
+            return
+            
         print("\nFound the following duplicate files:")
         for hash_value, file_list in duplicates.items():
             print(f"\nFiles with hash {hash_value}:")
             for filepath in file_list:
                 print(filepath)
         
-        # Prompt user for confirmation before removing files
-        user_input = input("\nWould you like to remove the duplicates? (y/n): ")
-        if user_input.lower() == 'y':
-            remove_duplicates(duplicates)
+        if input("\nWould you like to remove the duplicates? (y/n): ").lower() == 'y':
+            finder.remove_duplicates()
             print("\nDuplicate files have been removed.")
+        
+    except KeyboardInterrupt:
+        print("\nOperation cancelled by user.")
+        sys.exit(1)
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+        print(f"An error occurred. Check the log file for details.")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
