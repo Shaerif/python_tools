@@ -13,11 +13,16 @@ import os
 import sys
 from pathlib import Path
 from typing import List, Tuple, Optional, Dict, Any
+import importlib.util
+import glob
 
-# Add the current directory to Python path
-current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.append(current_dir)
+# Add src directory to Python path
+src_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(src_dir)
+if src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
 class ToolError(Exception):
     """Custom exception for tool-related errors."""
@@ -26,22 +31,19 @@ class ToolError(Exception):
 def safe_install_requirements():
     """Safely attempt to install requirements with interrupt handling"""
     try:
-        from install_requirements import install_requirements
-        install_requirements()
+        from core import install_requirements
+        install_requirements.install_requirements()
     except KeyboardInterrupt:
         print("\nInstallation interrupted by user. Continuing with available packages...")
         return False
     except ImportError as e:
-        print("Error: Could not import install_requirements.")
-        print("Please ensure install_requirements.py is in the same directory.")
+        print(f"Error: Could not import install_requirements: {e}")
+        print("Please ensure install_requirements.py is in the core directory.")
         sys.exit(1)
     return True
 
 # Attempt to install requirements
 safe_install_requirements()
-
-import glob
-import importlib.util
 
 TOOL_CATEGORIES = {
     "Core Tools": {
@@ -151,7 +153,7 @@ def main():
                 sys.exit(0)
             
             if choice in option_map:
-                tool_name, tool_path = option_map[choice]
+                _, tool_path = option_map[choice]
                 try:
                     run_tool(tool_path)
                 except ToolError:

@@ -3,6 +3,9 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 from dataclasses import dataclass
 
+# Define constants for repeated literals
+MISSING_FIELD_MSG = 'Missing required field'
+
 @dataclass
 class ValidationError:
     """Represents a configuration validation error"""
@@ -37,21 +40,21 @@ class Settings:
         
         # Validate backup_dir
         if 'backup_dir' not in self.config:
-            errors.append(ValidationError('backup_dir', 'Missing required field', None))
+            errors.append(ValidationError('backup_dir', MISSING_FIELD_MSG, None))
         elif not isinstance(self.config['backup_dir'], str):
             errors.append(ValidationError('backup_dir', 'Must be a string', self.config['backup_dir']))
             
         # Validate log_level
         valid_levels = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
         if 'log_level' not in self.config:
-            errors.append(ValidationError('log_level', 'Missing required field', None))
+            errors.append(ValidationError('log_level', MISSING_FIELD_MSG, None))
         elif self.config['log_level'] not in valid_levels:
-            errors.append(ValidationError('log_level', f'Must be one of: {", ".join(valid_levels)}', 
+            errors.append(ValidationError('log_level', 'Must be one of: {}'.format(", ".join(valid_levels)), 
                                        self.config['log_level']))
             
         # Validate max_file_size
         if 'max_file_size' not in self.config:
-            errors.append(ValidationError('max_file_size', 'Missing required field', None))
+            errors.append(ValidationError('max_file_size', MISSING_FIELD_MSG, None))
         elif not isinstance(self.config['max_file_size'], (int, float)) or self.config['max_file_size'] <= 0:
             errors.append(ValidationError('max_file_size', 'Must be a positive number', 
                                        self.config['max_file_size']))
@@ -72,8 +75,8 @@ class Settings:
                 # Validate configuration
                 errors = self.validate_config()
                 if errors:
-                    error_msgs = [f"{e.field}: {e.message}" for e in errors]
-                    raise ValueError(f"Invalid configuration:\n" + "\n".join(error_msgs))
+                    error_msgs = ["{}: {}".format(e.field, e.message) for e in errors]
+                    raise ValueError("Invalid configuration:\n" + "\n".join(error_msgs))
             else:
                 self.config = self.default_config()
                 self.save_config()

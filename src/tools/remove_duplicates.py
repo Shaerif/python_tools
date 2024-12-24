@@ -117,23 +117,32 @@ class DuplicateFinder:
             
         for hash_value, file_list in self.duplicates.items():
             logger.info(f"\nProcessing duplicate group with hash {hash_value}:")
-            for i, filepath in enumerate(file_list):
-                try:
-                    if keep_first and i == 0:
-                        logger.info(f"Keeping original: {filepath}")
-                        continue
-                        
-                    # Safety check before removal
-                    if not filepath.exists():
-                        logger.warning(f"File no longer exists: {filepath}")
-                        continue
-                        
-                    filepath.unlink()
-                    logger.info(f"Removed: {filepath}")
-                except PermissionError:
-                    logger.error(f"Permission denied: {filepath}")
-                except Exception as e:
-                    logger.error(f"Error removing {filepath}: {e}")
+            self._process_duplicate_group(file_list, keep_first)
+
+    def _process_duplicate_group(self, file_list: List[Path], keep_first: bool) -> None:
+        """Process a group of duplicate files.
+        
+        Args:
+            file_list (List[Path]): List of duplicate files.
+            keep_first (bool): If True, keeps the first occurrence of each file.
+        """
+        for i, filepath in enumerate(file_list):
+            try:
+                if keep_first and i == 0:
+                    logger.info(f"Keeping original: {filepath}")
+                    continue
+                    
+                # Safety check before removal
+                if not filepath.exists():
+                    logger.warning(f"File no longer exists: {filepath}")
+                    continue
+                    
+                filepath.unlink()
+                logger.info(f"Removed: {filepath}")
+            except PermissionError:
+                logger.error(f"Permission denied: {filepath}")
+            except Exception as e:
+                logger.error(f"Error removing {filepath}: {e}")
 
 def main():
     """Main execution function with error handling."""
@@ -163,7 +172,7 @@ def main():
         sys.exit(1)
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
-        print(f"An error occurred. Check the log file for details.")
+        print("An error occurred. Check the log file for details.")
         sys.exit(1)
 
 if __name__ == "__main__":
